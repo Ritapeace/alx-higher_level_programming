@@ -1,4 +1,4 @@
-nclude "lists.h"
+include "lists.h"
 
 /**
  * check_cycle - checks if a singly linked list has
@@ -40,4 +40,4 @@ int check_cycle(listint_t *list)
 	}
 
 	return (0);
-}i
+}
