@@ -1,47 +1,72 @@
 #!/usr/bin/python3
-"""
-This is the Square module.
-The Square module contains the Square class
+""" Define an object name Square.
 """
 
 
 class Square:
-    """ This is the Square class
+    """ Object Square [class]
     """
-    def __init__(self, size=0):
-        """ The __init__ method
+    def __init__(self, size=0, position=(0, 0)):
+        """ Method - Initialize.
+        Args:
+            self (class): This class
+            size (int): Size of the square
         """
         self.size = size
+        self.position = position
+
+    def area(self):
+        """ Method - Returns the current square area.
+        Args:
+            self (class): This class
+        """
+        return (self.__size ** 2)
+
+    def my_print(self):
+        """ Method - prints in stdout the square with the character #.
+        Args:
+            self (class): This class
+        """
+        if self.__size:
+            for i in range(self.position[1]):
+                print()
+            for j in range(self.size):
+                print(" " * self.position[0], end="")
+                print("#" * self.size)
+        else:
+            print()
 
     @property
     def size(self):
-        """ size getter
+        """ Get - instance attribute size
         """
-        return self.__size
+        return (self.__size)
+
+    @property
+    def position(self):
+        """ Get - instance attribute position
+        """
+        return (self.__position)
 
     @size.setter
     def size(self, value):
-        """ size setter
+        """ Set - instance attribute size
         """
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
-
-    def area(self):
-        """ returns the current square area
-        """
-        size = self.__size
-        return(size ** 2)
-
-    def my_print(self):
-        """
-        prints in stdout square with character #
-        """
-        size = self.__size
-        if size == 0:
-            print()
         else:
-            print("\n".join(["".join(['#' for i in range(size)])
-                for in range(size)]))
+            self.__size = value
+
+    @position.setter
+    def position(self, value):
+        """ Set - instance attribute position
+        """
+        if (not isinstance(value, tuple) or
+                len(value) != 2 or
+                not all(isinstance(val, int) for val in value) or
+                not all(val >= 0 for val in value)):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
