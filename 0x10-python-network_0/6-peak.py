@@ -1,5 +1,3 @@
-ble File  32 lines (27 sloc)  851 Bytes
-
 #!/usr/bin/python3
 """
 Function that finds a peak in a list of unsorted integers
